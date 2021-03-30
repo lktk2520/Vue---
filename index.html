@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+
+  <body>
+    <div id="app">
+      <h1>{{title}}</h1>
+      <img :src="src" alt="" />
+    </div>
+    <button onclick="data.title = 123456">點擊更換標題</button>
+    <script>
+      Vue.config.devtools = true; // 手動添加這行程式碼
+
+      let data = {
+        title: "葉子",
+        src: "./img/葉子.png",
+      };
+
+      let vm = new Vue({
+        el: "#app",
+        data: data,
+      });
+    </script>
+  </body>
+</html>
