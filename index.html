@@ -4,7 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.js"
+      integrity="sha512-gh+25Y0CTHtw1FSJ4gDKYDFlZ84oV0l1bY5v7xrIwep7M1aV+7JgUaTu55bMerCblbPUD22MKlStyUwO9lHq4w=="
+      crossorigin="anonymous"
+    ></script>
   </head>
 
   <body>
@@ -25,25 +29,6 @@
         data: data,
       });
       //
-      let data1 = {
-        title: "點擊切換",
-        src: "./img/葉子.png",
-        index: 0,
-        menu: [
-          { type: "A", title: "1", link: "js:," },
-          { type: "B", title: "2", link: "js:," },
-          { type: "C", title: "3", link: "js:," },
-          { type: "D", title: "4", link: "js:," },
-          { type: "E", title: "5", link: "js:," },
-          { type: "F", title: "6", link: "js:," },
-          { type: "G", title: "7", link: "js:," },
-        ],
-      };
-
-      let vm = new Vue({
-        el: "#app",
-        data: data,
-      });
     </script>
   </body>
 </html>
