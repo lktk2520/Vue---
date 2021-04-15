@@ -13,12 +13,31 @@
       <img :src="src" alt="" />
     </div>
     <button onclick="data.title = 123456">點擊更換標題</button>
-    <script>
-      Vue.config.devtools = true; // 手動添加這行程式碼
 
+    <script>
       let data = {
         title: "葉子",
         src: "./img/葉子.png",
+      };
+
+      let vm = new Vue({
+        el: "#app",
+        data: data,
+      });
+      //
+      let data1 = {
+        title: "點擊切換",
+        src: "./img/葉子.png",
+        index: 0,
+        menu: [
+          { type: "A", title: "1", link: "js:," },
+          { type: "B", title: "2", link: "js:," },
+          { type: "C", title: "3", link: "js:," },
+          { type: "D", title: "4", link: "js:," },
+          { type: "E", title: "5", link: "js:," },
+          { type: "F", title: "6", link: "js:," },
+          { type: "G", title: "7", link: "js:," },
+        ],
       };
 
       let vm = new Vue({
