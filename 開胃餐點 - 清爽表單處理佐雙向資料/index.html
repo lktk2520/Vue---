@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <div class="section">
+        <div class="title">
+          <div class="input">
+            {{name}}, {{sex}}性, {{age}},
+            <br />
+            {{favor.length ? '喜歡' : ''}}
+            <!-- 長度不為空值顯示喜歡 -->
+            {{favor.join('/')}}, {{member ? '已' : '未'}}成為頻道會員
+          </div>
+          <div class="menu">
+            <table>
+              <tr>
+                <td>名字</td>
+                <td>
+                  <input v-model="name" />
+                </td>
+              </tr>
+              <tr>
+                <td>性別</td>
+                <td>
+                  <input type="radio" value="女" v-model="sex" />女
+                  <input type="radio" value="男" v-model="sex" />男
+                </td>
+              </tr>
+              <tr>
+                <td>年齡</td>
+                <td>
+                  <select v-model="age">
+                    <option>20歲以下</option>
+                    <option>20~30歲</option>
+                    <option>30~40歲</option>
+                    <option>40~50歲</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td>會員</td>
+                <td>
+                  <input type="checkbox" v-model="member" />
+                </td>
+              </tr>
+              <tr>
+                <td>興趣</td>
+                <td>
+                  <input type="checkbox" value="扯鈴" v-model="favor" />
+                  <input type="checkbox" value="電玩" v-model="favor" />
+                  <input type="checkbox" value="游泳" v-model="favor" />
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.2.1/vue.js"
+      integrity="sha512-i1D6OkXB+ZGx8L0ED6V5oKqTBKtCaZxs4heiheYUu9+IEufVKuHos3Gs//uK7NAMcgBxfmv/OwfXKFCQZBjDqg=="
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      let data = {
+        name: "Henrry",
+        sex: "男",
+        age: "30歲",
+        favor: [],
+        member: true,
+      };
+      let vm = new Vue({
+        el: "#app",
+        data: data,
+      });
+    </script>
+  </body>
+</html>

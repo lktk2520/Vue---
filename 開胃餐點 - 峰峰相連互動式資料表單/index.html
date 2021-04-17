@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.2.1/vue.js"
+      integrity="sha512-i1D6OkXB+ZGx8L0ED6V5oKqTBKtCaZxs4heiheYUu9+IEufVKuHos3Gs//uK7NAMcgBxfmv/OwfXKFCQZBjDqg=="
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      let data = {
+        input: {
+          type: "全部",
+          title: "",
+        },
+        menu: [
+          { type: "單鈴", title: "大鵬展翅", link: "javascript:;" },
+          { type: "單鈴", title: "旋風金勾", link: "javascript:;" },
+          { type: "單鈴", title: "鳳凰展翅", link: "javascript:;" },
+          { type: "單鈴", title: "繞腳", link: "javascript:;" },
+          { type: "雙鈴", title: "雙鈴掛手", link: "javascript:;" },
+          { type: "雙鈴", title: "電風扇", link: "javascript:;" },
+          { type: "雙鈴", title: "迴龍出海", link: "javascript:;" },
+          { type: "雙鈴", title: "台南大屠殺", link: "javascript:;" },
+          { type: "直立鈴", title: "上甩下甩", link: "javascript:;" },
+          { type: "直立鈴", title: "直立鈴放棍", link: "javascript:;" },
+          { type: "直立鈴", title: "直升機", link: "javascript:;" },
+          { type: "直立鈴", title: "360放棍", link: "javascript:;" },
+        ],
+      };
+      let vm = new Vue({
+        el: "#app",
+        data: data,
+        computed: {
+          typeList() {
+            let obj = {
+              sort: [],
+              map: {},
+            };
+            this.menu.forEach(((type, title, link), index) => {
+              if (!obj.map[type]) {
+                obj.sort.push(type);
+                obj.map[type] = {};
+              }
+            });
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
