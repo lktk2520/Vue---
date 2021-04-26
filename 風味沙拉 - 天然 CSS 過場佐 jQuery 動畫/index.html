@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .fade-enter,
+      .fade-leave-to {
+        opacity: 0;
+      }
+      .fade-enter-active,
+      .fade-leave-active {
+        transition: opacity 0.5s;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <section>
+        <div class="container">
+          <div class="title">
+            <img :src="src" alt="" class="logo" width="200" height="200" />
+            <h1>{{title}}</h1>
+            <div class="description">
+              <a v-if="index != 0" class="arror left" @click="changeIndex(-1)"
+                >左</a
+              >
+              <transition name="fade" mode="out-in" appear>
+                <!-- mode(先出再進)appear(一load進來就要效果) -->
+                <div
+                  class="menuItem white"
+                  v-for="(item,i) in menu"
+                  v-if="i===index"
+                  :key="item.title"
+                >
+                  <span class="number">{{i+1}}</span>
+                  <span class="type">{{item.type}}</span>
+                  <a :href="item.link" class="title">{{item.title}}</a>
+                </div>
+              </transition>
+
+              <!-- 為了要做效果所以用v-for方式產生很多dom -->
+              <a
+                href=""
+                v-if="index != total"
+                class="arror left"
+                @click="changeIndex(1)"
+                >右</a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <!-- 進場機制: v-enter,v-enter-active(補間),v-enert-to(原始狀態) -->
+    <!-- 離場機制: v-leave,v-leave-active,v-leave-to -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.2.1/vue.js"></script>
+    <script>
+      let data = {
+        title: "V左右切換",
+        src: "../img/葉子.png",
+        index: 0,
+        menu: [
+          { type: "單鈴", title: "大鵬展翅", link: "" },
+          { type: "單鈴", title: "旋風金勾", link: "" },
+          { type: "單鈴", title: "鳳凰展翅", link: "" },
+          { type: "單鈴", title: "繞腳", link: "" },
+          { type: "雙鈴", title: "雙鈴掛手", link: "" },
+          { type: "雙鈴", title: "電風扇", link: "" },
+          { type: "雙鈴", title: "迴龍出海", link: "" },
+          { type: "雙鈴", title: "台南大屠殺", link: "" },
+          { type: "直立鈴", title: "上甩下甩", link: "" },
+          { type: "直立鈴", title: "直立鈴放棍", link: "" },
+          { type: "直立鈴", title: "直升機", link: "" },
+          { type: "直立鈴", title: "360放棍", link: "" },
+        ],
+      };
+      let vm = new Vue({
+        el: "#app",
+        data: data,
+        computed: {
+          today() {
+            return this.menu[this.index];
+          },
+          total() {
+            return this.menu.length;
+          },
+        },
+        methods: {
+          changeIndex(change) {
+            event.preventDefault();
+            this.index += change;
+
+            // if (this.index < 0) {
+            //   this.index = 0;
+            // } else if (this.index > this.menu.length - 1) {
+            //   this.menu.length - 1;
+            // }
+            //不循環
+
+            if (this.index < 0) {
+              this.index = this.menu.length - 1;
+            } else if (this.index > this.menu.length - 1) {
+              this.index = 0;
+            }
+            //循環
+          },
+        },
+      });
+
+      // document.querySelector('').addEventListener('click',function(){})
+    </script>
+  </body>
+</html>

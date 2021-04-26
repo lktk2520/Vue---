@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <section>
+        <div class="container">
+          <div class="title">
+            <div class="description">
+              <div @click="number++">{{number}}</div>
+            </div>
+            <div class="description">
+              <div @click="obj.num++">{{obj.num}}</div>
+            </div>
+            <div class="description">
+              <div
+                style="
+                  display: inline-block;
+                  padding: 1em;
+                  border-radius: 50%;
+                  margin: 1em;
+                  background-color: rgb(173, 173, 173);
+                "
+                v-for="(item,index) in objList"
+                @click="objListHandler(index)"
+              >
+                {{item.num}}
+              </div>
+            </div>
+            <div class="description">
+              <div
+                style="
+                  display: inline-block;
+                  padding: 1em;
+                  border-radius: 50%;
+                  margin: 1em;
+                  background-color: rgb(160, 160, 160);
+                "
+                v-for="(item,index) in numberList"
+                @click="numberListHandler(index)"
+              >
+                {{item}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.2.1/vue.js"></script>
+    <script>
+      let data = {
+        obj: {
+          num: 0,
+        },
+        objList: [{ num: 0 }, { num: 0 }, { num: 0 }],
+        number: 0,
+        numberList: [0, 0, 0],
+      };
+      let vm = new Vue({
+        el: "#app",
+        data: data,
+        methods: {
+          objListHandler(index) {
+            this.objList[index].num++;
+          },
+          numberListHandler(index) {
+            // this.numberList[index]++;
+            // 陣列中的"數字"並未直接綁畫面,因此下一次通知更新的時候才會更新
+            this.$set(this.numberList, index, this.numberList[index] + 1);
+            // .$set 誰的,哪一個位置,做甚麼事
+          },
+        },
+        watch: {
+          number(now, old) {
+            console.log("number", now, old);
+          },
+          //   ["obj.num"](now, old) {
+          //     console.log("obj", now, old);
+          //   },
+          //   觀測obj裡面的num的表示法,使用[],用以抓物件'單一參數'
+          obj: {
+            handler(now, old) {
+              console.log("number", now, old);
+            },
+            deep: true,
+          },
+          //如果你觀測的是物件,物件就只有一個 now 和 old 是一樣的,所以沒有意義
+
+          numberList(now, old) {
+            console.log("number", now, old);
+          },
+          //如果有$set,就是用set的東西再打資料,"可以直接觀測"
+
+          //   objList(now, old) {
+          //     console.log("number", now, old);
+          //   },
+          // 因為是偵測陣列裡面的物件所以要用deep
+          objList: {
+            handler(now, old) {
+              console.log("number", now, old);
+            },
+            deep: true,
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
